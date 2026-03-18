@@ -5,8 +5,8 @@ import authRouter from "./routes/auth.route";
 
 dbConnection();
 
-authRouter.use("/api/auth", authRouter);
+app.use("/api/auth", authRouter);
 
-app.listen(8000, () => {
+app.listen(5000, () => {
   console.log("server is running okay");
 });
