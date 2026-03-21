@@ -7,11 +7,12 @@ export const validation = async (
   next: NextFunction,
 ) => {
   const result = validationResult(req);
-  if (result.isEmpty()) {
-    return res.send(`Hello, ${req.query.person}!`);
+  if (!result.isEmpty()) {
+    return res.status(400).json({
+      success: false,
+      errors: result.array(),
+    });
   }
-
-  res.send({ errors: result.array() });
 
   next();
 };
