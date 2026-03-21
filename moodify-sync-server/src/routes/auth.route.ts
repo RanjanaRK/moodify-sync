@@ -1,6 +1,12 @@
 import { Router } from "express";
-import { registerValidator } from "../validators/auth.validator";
-import { registerController } from "../controllers/auth.contoller";
+import {
+  loginValidator,
+  registerValidator,
+} from "../validators/auth.validator";
+import {
+  loginController,
+  registerController,
+} from "../controllers/auth.contoller";
 
 const authRouter = Router();
 
@@ -11,5 +17,6 @@ const authRouter = Router();
  * @body { username, email, password }
  */
 authRouter.post("/register", registerValidator, registerController);
+authRouter.post("/login", loginValidator, loginController);
 
 export default authRouter;

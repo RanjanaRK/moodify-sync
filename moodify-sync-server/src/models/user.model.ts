@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
+import { IUser } from "../utils/types";
 
-const userSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema<IUser>(
   {
     username: {
       type: String,
@@ -34,7 +35,7 @@ userSchema.pre("save", async function () {
   this.password = await bcrypt.hash(this.password, 12);
 });
 
-userSchema.methods.correctPassword = async function (
+userSchema.methods.comparePassword = async function (
   candidatePassword: string,
 ) {
   return await bcrypt.compare(candidatePassword, this.password);
