@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { userModel } from "../models/user.model";
 import jwt from "jsonwebtoken";
+import { userModel } from "../models/user.model";
 
 export const registerController = async (req: Request, res: Response) => {
   try {
@@ -17,7 +17,11 @@ export const registerController = async (req: Request, res: Response) => {
       });
     }
 
-    const newUser = await userModel.create({ username, email, password });
+    const newUser = await userModel.create({
+      username,
+      email,
+      password,
+    });
 
     const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET!, {
       expiresIn: "7d",
@@ -49,7 +53,7 @@ export const loginController = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
 
-    const existingUser = await userModel.findOne({ email });
+    const existingUser = await userModel.findOne({ email }).select("+password");
 
     if (!existingUser) {
       return res.status(400).json({
@@ -58,6 +62,7 @@ export const loginController = async (req: Request, res: Response) => {
         error: "User not found",
       });
     }
+
     const ispasswordCorrect = await existingUser.comparePassword(password);
 
     if (!ispasswordCorrect) {
