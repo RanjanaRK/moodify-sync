@@ -1,12 +1,12 @@
 import { Router } from "express";
 import {
-  loginValidator,
-  registerValidator,
-} from "../validators/auth.validator";
-import {
   loginController,
   registerController,
 } from "../controllers/auth.contoller";
+import {
+  loginValidator,
+  registerValidator,
+} from "../validators/auth.validator";
 
 const authRouter = Router();
 

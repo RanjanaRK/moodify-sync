@@ -98,3 +98,18 @@ export const loginController = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Error logging in user" });
   }
 };
+
+export const logoutContoller = async (req: Request, res: Response) => {
+  try {
+    const token = req.cookies.token;
+
+    res.clearCookie("token");
+
+    res.status(200).json({
+      message: "logout successfully.",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error logout in user" });
+  }
+};
