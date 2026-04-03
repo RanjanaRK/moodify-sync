@@ -1,12 +1,14 @@
 import { Router } from "express";
 import {
   loginController,
+  logoutContoller,
   registerController,
 } from "../controllers/auth.contoller";
 import {
   loginValidator,
   registerValidator,
 } from "../validators/auth.validator";
+import authUser from "../middleware/auth.middleware";
 
 const authRouter = Router();
 
@@ -18,5 +20,6 @@ const authRouter = Router();
  */
 authRouter.post("/register", registerValidator, registerController);
 authRouter.post("/login", loginValidator, loginController);
+authRouter.post("/logout", authUser, logoutContoller);
 
 export default authRouter;
