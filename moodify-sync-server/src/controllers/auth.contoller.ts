@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import { userModel } from "../models/user.model";
+import redis from "../config/cache";
 
 export const registerController = async (req: Request, res: Response) => {
   try {
@@ -104,6 +105,8 @@ export const logoutContoller = async (req: Request, res: Response) => {
     const token = req.cookies.token;
 
     res.clearCookie("token");
+
+    await redis.set(token, Date.now().toString(), "EX", 60 * 60);
 
     res.status(200).json({
       message: "logout successfully.",
