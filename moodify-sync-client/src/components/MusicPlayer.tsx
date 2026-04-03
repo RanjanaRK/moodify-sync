@@ -16,7 +16,11 @@ interface MusicPlayerProps {
   onPlayToggle: () => void;
 }
 
-const MusicPlayer: React.FC<MusicPlayerProps> = ({ song, isPlaying, onPlayToggle }) => {
+const MusicPlayer: React.FC<MusicPlayerProps> = ({
+  song,
+  isPlaying,
+  onPlayToggle,
+}) => {
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(70);
 
@@ -71,7 +75,11 @@ const MusicPlayer: React.FC<MusicPlayerProps> = ({ song, isPlaying, onPlayToggle
           onClick={onPlayToggle}
           className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full p-4 shadow-lg transform hover:scale-110 active:scale-95 transition-all"
         >
-          {isPlaying ? <Pause size={36} /> : <Play size={36} className="ml-1" />}
+          {isPlaying ? (
+            <Pause size={36} />
+          ) : (
+            <Play size={36} className="ml-1" />
+          )}
         </button>
 
         <button className="text-purple-300 hover:text-white transition-colors">

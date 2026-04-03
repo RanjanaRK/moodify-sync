@@ -4,14 +4,42 @@ interface MoodSelectorProps {
 }
 
 const moods = [
-  { id: "happy", label: "Happy", emoji: "😊", color: "from-yellow-500 to-orange-500" },
-  { id: "sad", label: "Sad", emoji: "😢", color: "from-blue-500 to-indigo-500" },
-  { id: "energetic", label: "Energetic", emoji: "⚡", color: "from-red-500 to-pink-500" },
-  { id: "calm", label: "Calm", emoji: "🧘", color: "from-green-500 to-teal-500" },
-  { id: "romantic", label: "Romantic", emoji: "💕", color: "from-pink-500 to-rose-500" },
+  {
+    id: "happy",
+    label: "Happy",
+    emoji: "😊",
+    color: "from-yellow-500 to-orange-500",
+  },
+  {
+    id: "sad",
+    label: "Sad",
+    emoji: "😢",
+    color: "from-blue-500 to-indigo-500",
+  },
+  {
+    id: "energetic",
+    label: "Energetic",
+    emoji: "⚡",
+    color: "from-red-500 to-pink-500",
+  },
+  {
+    id: "calm",
+    label: "Calm",
+    emoji: "🧘",
+    color: "from-green-500 to-teal-500",
+  },
+  {
+    id: "romantic",
+    label: "Romantic",
+    emoji: "💕",
+    color: "from-pink-500 to-rose-500",
+  },
 ];
 
-const MoodSelector: React.FC<MoodSelectorProps> = ({ selectedMood, onMoodChange }) => {
+const MoodSelector: React.FC<MoodSelectorProps> = ({
+  selectedMood,
+  onMoodChange,
+}) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
       {moods.map((mood) => (

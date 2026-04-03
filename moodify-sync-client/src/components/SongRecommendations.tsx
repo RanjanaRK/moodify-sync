@@ -25,7 +25,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Good as Hell",
       artist: "Lizzo",
       album: "Cuz I Love You",
-      cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
       duration: 214,
       mood: "happy",
     },
@@ -34,7 +35,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Walking on Sunshine",
       artist: "Katrina & The Waves",
       album: "Walking on Sunshine",
-      cover: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
       duration: 245,
       mood: "happy",
     },
@@ -43,7 +45,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Shut Up and Dance",
       artist: "Walk the Moon",
       album: "Walk the Moon",
-      cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
       duration: 208,
       mood: "happy",
     },
@@ -52,7 +55,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Don't Stop Me Now",
       artist: "Queen",
       album: "News of the World",
-      cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop",
       duration: 226,
       mood: "happy",
     },
@@ -61,7 +65,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Walking on Air",
       artist: "Katy Perry",
       album: "Teenage Dream",
-      cover: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
       duration: 231,
       mood: "happy",
     },
@@ -70,7 +75,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Here Comes the Sun",
       artist: "The Beatles",
       album: "Abbey Road",
-      cover: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop",
       duration: 185,
       mood: "happy",
     },
@@ -81,7 +87,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Someone Like You",
       artist: "Adele",
       album: "21",
-      cover: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop",
       duration: 285,
       mood: "sad",
     },
@@ -90,7 +97,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "The Night We Met",
       artist: "Lord Huron",
       album: "Lonesome Dreams",
-      cover: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
       duration: 234,
       mood: "sad",
     },
@@ -99,7 +107,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Tears in Heaven",
       artist: "Eric Clapton",
       album: "Unplugged",
-      cover: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
       duration: 262,
       mood: "sad",
     },
@@ -108,7 +117,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Mad World",
       artist: "Gary Jules",
       album: "Trading Snakeoil for Wolftickets",
-      cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
       duration: 191,
       mood: "sad",
     },
@@ -117,7 +127,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Black",
       artist: "Pearl Jam",
       album: "Vitalogy",
-      cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop",
       duration: 329,
       mood: "sad",
     },
@@ -126,7 +137,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Hurt",
       artist: "Johnny Cash",
       album: "American Recordings",
-      cover: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
       duration: 218,
       mood: "sad",
     },
@@ -137,7 +149,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Uptown Funk",
       artist: "Mark Ronson ft. Bruno Mars",
       album: "Uptown Special",
-      cover: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop",
       duration: 269,
       mood: "energetic",
     },
@@ -146,7 +159,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "We Will Rock You",
       artist: "Queen",
       album: "News of the World",
-      cover: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop",
       duration: 127,
       mood: "energetic",
     },
@@ -155,7 +169,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Blinding Lights",
       artist: "The Weeknd",
       album: "After Hours",
-      cover: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
       duration: 200,
       mood: "energetic",
     },
@@ -164,7 +179,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Eye of the Tiger",
       artist: "Survivor",
       album: "Eye of the Tiger",
-      cover: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
       duration: 247,
       mood: "energetic",
     },
@@ -175,7 +191,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Weightless",
       artist: "Marconi Union",
       album: "Weightless",
-      cover: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
       duration: 480,
       mood: "calm",
     },
@@ -184,7 +201,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Clair de Lune",
       artist: "Claude Debussy",
       album: "Suite Bergamasque",
-      cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
       duration: 273,
       mood: "calm",
     },
@@ -193,7 +211,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Holocene",
       artist: "Bon Iver",
       album: "For Emma Forever Ago",
-      cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400&h=400&fit=crop",
       duration: 315,
       mood: "calm",
     },
@@ -202,7 +221,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Breathe",
       artist: "The Pink Floyd",
       album: "The Dark Side of the Moon",
-      cover: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
       duration: 269,
       mood: "calm",
     },
@@ -213,7 +233,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Perfect",
       artist: "Ed Sheeran",
       album: "÷ (Divide)",
-      cover: "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop",
       duration: 263,
       mood: "romantic",
     },
@@ -222,7 +243,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "All of Me",
       artist: "John Legend",
       album: "Love in the Future",
-      cover: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=400&fit=crop",
       duration: 248,
       mood: "romantic",
     },
@@ -231,7 +253,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "At Last",
       artist: "Etta James",
       album: "At Last!",
-      cover: "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
       duration: 186,
       mood: "romantic",
     },
@@ -240,7 +263,8 @@ const songDatabase: Record<string, Song[]> = {
       title: "Thinking Out Loud",
       artist: "Ed Sheeran",
       album: "× (Multiply)",
-      cover: "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
+      cover:
+        "https://images.unsplash.com/photo-1487180144351-b8472da7d491?w=400&h=400&fit=crop",
       duration: 282,
       mood: "romantic",
     },
@@ -257,7 +281,9 @@ const SongRecommendations: React.FC<SongRecommendationsProps> = ({
 
   const toggleLike = (songId: string) => {
     setLikedSongs((prev) =>
-      prev.includes(songId) ? prev.filter((id) => id !== songId) : [...prev, songId]
+      prev.includes(songId)
+        ? prev.filter((id) => id !== songId)
+        : [...prev, songId],
     );
   };
 
@@ -294,13 +320,18 @@ const SongRecommendations: React.FC<SongRecommendationsProps> = ({
 
           {/* Song Info */}
           <div className="p-4">
-            <h3 className="text-white font-semibold mb-1 truncate">{song.title}</h3>
-            <p className="text-purple-200 text-sm mb-3 truncate">{song.artist}</p>
+            <h3 className="text-white font-semibold mb-1 truncate">
+              {song.title}
+            </h3>
+            <p className="text-purple-200 text-sm mb-3 truncate">
+              {song.artist}
+            </p>
 
             {/* Duration */}
             <div className="flex items-center justify-between">
               <span className="text-purple-300 text-xs">
-                {Math.floor(song.duration / 60)}:{(song.duration % 60).toString().padStart(2, "0")}
+                {Math.floor(song.duration / 60)}:
+                {(song.duration % 60).toString().padStart(2, "0")}
               </span>
 
               {/* Like Button */}
@@ -312,7 +343,10 @@ const SongRecommendations: React.FC<SongRecommendationsProps> = ({
                     : "text-purple-300 hover:text-pink-500"
                 }`}
               >
-                <Heart size={18} fill={likedSongs.includes(song.id) ? "currentColor" : "none"} />
+                <Heart
+                  size={18}
+                  fill={likedSongs.includes(song.id) ? "currentColor" : "none"}
+                />
               </button>
             </div>
           </div>
