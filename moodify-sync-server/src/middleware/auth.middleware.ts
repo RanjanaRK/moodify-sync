@@ -19,9 +19,9 @@ const authUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 
   try {
-    const decoded = jwt.verify(token, env.JWT_SECRET);
+    const decoded = jwt.verify(token, env.JWT_SECRET) as JwtPayload;
 
-    req.user = decoded;
+    req.user = decoded.id as string;
 
     console.log("reqmiddleware", req.user, decoded);
 
