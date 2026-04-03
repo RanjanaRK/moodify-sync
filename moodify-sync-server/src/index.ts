@@ -1,10 +1,9 @@
-import "dotenv/config";
-import app from "./server";
-import express from "express";
-import dbConnection from "./config/db";
-import authRouter from "./routes/auth.route";
 import cookieParser from "cookie-parser";
-import userRouter from "./routes/user.route";
+import dbConnection from "./config/db.js";
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js";
+import app from "./server.js";
+import express from "express";
 
 dbConnection();
 

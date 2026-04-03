@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { userModel } from "../models/user.model";
-import redis from "../config/cache";
+import { userModel } from "../models/user.model.js";
+import redis from "../config/cache.js";
 
 export const registerController = async (req: Request, res: Response) => {
   try {
