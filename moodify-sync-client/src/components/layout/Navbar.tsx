@@ -2,7 +2,7 @@ const Navbar = () => {
   return (
     <>
       <nav className=" mx-auto  max-w-7xl z-50 bg-linear-to-br from-[#07071f] via-[#301a4e] to-[#1e0926]">
-        <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-xl rounded-2xl px-6 py-3 flex items-center justify-between">
+        <div className="backdrop-blur-md bg-white/10 border border-white/20 shadow-xl  px-6 py-3 flex items-center justify-between">
           {/* Logo / Brand */}
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center">
