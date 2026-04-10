@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-import redis from "../config/cache";
-import env from "../config/env";
+import redis from "../config/cache.js";
+import env from "../config/env.js";
 
 const authUser = async (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.token;

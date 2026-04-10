@@ -1,14 +1,14 @@
 import { Router } from "express";
 import {
+  registerController,
   loginController,
   logoutContoller,
-  registerController,
-} from "../controllers/auth.contoller";
+} from "../controllers/auth.contoller.js";
+import authUser from "../middleware/auth.middleware.js";
 import {
-  loginValidator,
   registerValidator,
-} from "../validators/auth.validator";
-import authUser from "../middleware/auth.middleware";
+  loginValidator,
+} from "../validators/auth.validator.js";
 
 const authRouter = Router();
 
