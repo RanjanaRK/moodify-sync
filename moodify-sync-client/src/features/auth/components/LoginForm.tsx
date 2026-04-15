@@ -8,8 +8,26 @@ import {
 } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema } from "../utils/zodSchema";
+import type { LoginFormType } from "../utils/types";
 
 const LoginForm = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<LoginFormType>({
+    resolver: zodResolver(loginSchema),
+  });
+
+  const loginHandle = async (lvalue: LoginFormType) => {
+    console.log(lvalue);
+    reset();
+  };
+
   return (
     <>
       <div className="min-h-screen flex w-3xl items-center justify-center px-4">
@@ -22,23 +40,27 @@ const LoginForm = () => {
           </CardHeader>
 
           <CardContent>
-            <form className="space-y-5">
+            <form className="space-y-5" onSubmit={handleSubmit(loginHandle)}>
               <div className="space-y-2">
                 <Label className="text-gray-300">Email</Label>
                 <Input
+                  {...register("email")}
                   type="email"
                   placeholder="Enter your email"
                   className="rounded-2xl border-white/10 bg-white/5 py-6 text-white placeholder:text-gray-500 focus-visible:ring-orange-500"
                 />
+                {errors.email && <p>{errors.email.message}</p>}
               </div>
 
               <div className="space-y-2">
                 <Label className="text-gray-300">Password</Label>
                 <Input
+                  {...register("password")}
                   type="password"
                   placeholder="Enter your password"
                   className="rounded-2xl border-white/10 bg-white/5 py-6 text-white placeholder:text-gray-500 focus-visible:ring-orange-500"
                 />
+                {errors.password && <p>{errors.password.message}</p>}
               </div>
 
               <Button
