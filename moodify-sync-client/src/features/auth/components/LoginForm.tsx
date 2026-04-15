@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/zodSchema";
 import type { LoginFormType } from "../utils/types";
+import { Link } from "react-router";
 
 const LoginForm = () => {
   const {
@@ -72,10 +73,12 @@ const LoginForm = () => {
             </form>
 
             <p className="text-center text-sm text-gray-400 mt-6">
-              Don&apos;t have an account?{" "}
-              <span className="text-orange-500 cursor-pointer hover:text-orange-300">
-                Register
-              </span>
+              <Link to={"/auth/register"}>
+                Don&apos;t have an account?{" "}
+                <span className="text-orange-500 cursor-pointer hover:text-orange-300">
+                  Register
+                </span>
+              </Link>
             </p>
           </CardContent>
         </Card>
