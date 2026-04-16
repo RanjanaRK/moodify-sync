@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useCurrentUser } from "../../features/auth/hooks/useUser";
+import LogoutButton from "./LogoutButton";
 
 const Navbar = () => {
   const { currentUserQuery } = useCurrentUser();
@@ -16,19 +17,16 @@ const Navbar = () => {
           </h1>
 
           {/* Links */}
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+          <div className="hidden md:flex items-center gap-5 text-sm font-medium text-gray-300">
             <Link
               to="/profile"
-              className="hover:text-orange-400 transition-colors"
+              className="hover:text-orange-400 hover:underline transition-colors"
             >
               {user?.username}
             </Link>
-          </div>
 
-          {/* CTA */}
-          {/* <button className="bg-orange-600 hover:bg-orange-500 text-white px-5 py-2 rounded-xl font-semibold shadow-lg transition-all duration-300">
-            Profile
-          </button> */}
+            <LogoutButton />
+          </div>
         </div>
 
         {/* bottom border glow */}
