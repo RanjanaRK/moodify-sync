@@ -1,3 +1,5 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import { Button } from "../../../components/ui/button";
 import {
@@ -9,12 +11,14 @@ import {
 } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, registerSchema } from "../utils/zodSchema";
 import type { RegisterFormType } from "../utils/types";
+import { registerSchema } from "../utils/zodSchema";
+import { useRegister } from "../hooks/useAuth";
+import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
+  const { registerMutation } = useRegister();
+
   const {
     register,
     formState: { errors },
@@ -24,8 +28,11 @@ const RegisterForm = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const registerHandle = async (lvalue: RegisterFormType) => {
-    console.log(lvalue);
+  const registerHandle = async (rvalue: RegisterFormType) => {
+    console.log(rvalue);
+
+    await registerMutation.mutateAsync(rvalue);
+
     reset();
   };
 
@@ -82,9 +89,10 @@ const RegisterForm = () => {
 
             <Button
               type="submit"
+              disabled={registerMutation.isPending}
               className="w-full rounded-2xl bg-orange-700 hover:bg-orange-600 py-6 text-base font-semibold"
             >
-              Register
+              {registerMutation.isPending ? <Loader /> : "Register"}
             </Button>
           </form>
 
