@@ -4,8 +4,18 @@ import authRouter from "./routes/auth.route.js";
 import userRouter from "./routes/user.route.js";
 import app from "./server.js";
 import express from "express";
+import cors from "cors";
 
 dbConnection();
+
+app.set("trust proxy", 1);
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  }),
+);
 
 app.use(express.json());
 app.use(cookieParser());
