@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { register } from "../service/auth.api";
+import { login, register } from "../service/auth.api";
 import toast from "react-hot-toast";
 
 export const useRegister = () => {
@@ -7,8 +7,8 @@ export const useRegister = () => {
 
   const registerMutation = useMutation({
     mutationFn: register,
-    onSuccess: async () => {
-      toast.success("Register successfully.");
+    onSuccess: async (data) => {
+      toast.success(data.message);
 
       await queryClient.invalidateQueries({ queryKey: ["me"] });
     },
@@ -19,5 +19,25 @@ export const useRegister = () => {
 
   return {
     registerMutation,
+  };
+};
+
+export const useLogin = () => {
+  const queryClient = useQueryClient();
+
+  const loginMutation = useMutation({
+    mutationFn: login,
+    onSuccess: async (data) => {
+      toast.success(data.message);
+
+      await queryClient.invalidateQueries({ queryKey: ["me"] });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  return {
+    loginMutation,
   };
 };

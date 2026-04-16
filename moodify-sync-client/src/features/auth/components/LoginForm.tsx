@@ -13,8 +13,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/zodSchema";
 import type { LoginFormType } from "../utils/types";
 import { Link } from "react-router";
+import { useLogin } from "../hooks/useAuth";
+import { Loader2 } from "lucide-react";
 
 const LoginForm = () => {
+  const { loginMutation } = useLogin();
+
   const {
     register,
     formState: { errors },
@@ -25,7 +29,8 @@ const LoginForm = () => {
   });
 
   const loginHandle = async (lvalue: LoginFormType) => {
-    console.log(lvalue);
+    await loginMutation.mutateAsync(lvalue);
+
     reset();
   };
 
@@ -66,9 +71,10 @@ const LoginForm = () => {
 
               <Button
                 type="submit"
+                disabled={loginMutation.isPending}
                 className="w-full rounded-2xl bg-orange-700 hover:bg-orange-600 py-6 text-base font-semibold"
               >
-                Login
+                {loginMutation.isPending ? <Loader2 /> : "Login"}
               </Button>
             </form>
 
