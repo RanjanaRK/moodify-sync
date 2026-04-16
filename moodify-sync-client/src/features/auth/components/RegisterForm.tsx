@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { Button } from "../../../components/ui/button";
 import {
   Card,
@@ -17,6 +17,8 @@ import { useRegister } from "../hooks/useAuth";
 import { Loader } from "lucide-react";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const { registerMutation } = useRegister();
 
   const {
@@ -32,8 +34,8 @@ const RegisterForm = () => {
     console.log(rvalue);
 
     await registerMutation.mutateAsync(rvalue);
-
     reset();
+    navigate("/");
   };
 
   return (

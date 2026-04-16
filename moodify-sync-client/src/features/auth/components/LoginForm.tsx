@@ -12,11 +12,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../utils/zodSchema";
 import type { LoginFormType } from "../utils/types";
-import { Link } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useLogin } from "../hooks/useAuth";
 import { Loader2 } from "lucide-react";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const { loginMutation } = useLogin();
 
   const {
@@ -32,6 +33,8 @@ const LoginForm = () => {
     await loginMutation.mutateAsync(lvalue);
 
     reset();
+
+    navigate("/");
   };
 
   return (

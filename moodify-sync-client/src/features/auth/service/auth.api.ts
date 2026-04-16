@@ -34,3 +34,16 @@ export const login = async (lvalue: LoginFormType) => {
     throw new Error("Something went wrong");
   }
 };
+
+export const logout = async () => {
+  try {
+    const response = await api.post("/api/auth/logout");
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "logout failed");
+    }
+
+    throw new Error("Something went wrong");
+  }
+};

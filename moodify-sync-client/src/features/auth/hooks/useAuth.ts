@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { login, register } from "../service/auth.api";
+import { login, logout, register } from "../service/auth.api";
 import toast from "react-hot-toast";
+import { LogOut } from "lucide-react";
 
 export const useRegister = () => {
   const queryClient = useQueryClient();
@@ -39,5 +40,25 @@ export const useLogin = () => {
 
   return {
     loginMutation,
+  };
+};
+
+export const useLogout = () => {
+  const queryClient = useQueryClient();
+
+  const logoutMutation = useMutation({
+    mutationFn: () => logout(),
+    onSuccess: async (data) => {
+      toast.success(data.message);
+
+      // await queryClient.invalidateQueries({ queryKey: ["me"] });
+    },
+    onError: (error) => {
+      toast.error(error.message);
+    },
+  });
+
+  return {
+    logoutMutation,
   };
 };
