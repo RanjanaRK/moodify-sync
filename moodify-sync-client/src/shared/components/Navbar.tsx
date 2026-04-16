@@ -1,4 +1,11 @@
+import { Link } from "react-router";
+import { useCurrentUser } from "../../features/auth/hooks/useUser";
+
 const Navbar = () => {
+  const { currentUserQuery } = useCurrentUser();
+  const user = currentUserQuery.data?.user;
+  console.log(user);
+
   return (
     <>
       <nav className="w-full absolute top-0 left-0 z-50 bg-black/40 backdrop-blur-md border-b border-orange-500/10">
@@ -10,9 +17,12 @@ const Navbar = () => {
 
           {/* Links */}
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
-            <a href="#" className="hover:text-orange-400 transition-colors">
-              Profile
-            </a>
+            <Link
+              to="/profile"
+              className="hover:text-orange-400 transition-colors"
+            >
+              {user?.username}
+            </Link>
           </div>
 
           {/* CTA */}

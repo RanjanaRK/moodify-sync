@@ -34,7 +34,9 @@ const RegisterForm = () => {
     console.log(rvalue);
 
     await registerMutation.mutateAsync(rvalue);
+
     reset();
+
     navigate("/");
   };
 

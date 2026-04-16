@@ -1,6 +1,10 @@
 import axios from "axios";
 import { api } from "../../../shared/lib/api";
-import type { LoginFormType, RegisterFormType } from "../utils/types";
+import type {
+  CurrentUserResponse,
+  LoginFormType,
+  RegisterFormType,
+} from "../utils/types";
 
 export const register = async (rvalue: RegisterFormType) => {
   try {
@@ -42,6 +46,24 @@ export const logout = async () => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       throw new Error(error.response?.data?.message || "logout failed");
+    }
+
+    throw new Error("Something went wrong");
+  }
+};
+
+export const getMe = async (): Promise<CurrentUserResponse> => {
+  try {
+    const { data } = await api.get("/api/user/me");
+
+    return {
+      success: true,
+      message: "User fetched successfully",
+      user: data.user,
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message || "Failed to fetch user");
     }
 
     throw new Error("Something went wrong");

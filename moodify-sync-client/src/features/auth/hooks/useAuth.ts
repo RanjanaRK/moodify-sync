@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { login, logout, register } from "../service/auth.api";
 import toast from "react-hot-toast";
-import { LogOut } from "lucide-react";
+import { login, logout, register } from "../service/auth.api";
 
 export const useRegister = () => {
   const queryClient = useQueryClient();
