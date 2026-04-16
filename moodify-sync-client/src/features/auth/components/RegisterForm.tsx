@@ -51,13 +51,13 @@ const RegisterForm = () => {
             <div className="space-y-2">
               <Label className="text-gray-300">Full Name</Label>
               <Input
-                {...register("fullName")}
+                {...register("username")}
                 type="text"
                 placeholder="Enter your full name"
                 className="rounded-2xl border-white/10 bg-white/5 py-6 text-white placeholder:text-gray-500 focus-visible:ring-orange-500"
               />
-              {errors.fullName && (
-                <span className="text-red-500">{errors.fullName.message}</span>
+              {errors.username && (
+                <span className="text-red-500">{errors.username.message}</span>
               )}
             </div>
 

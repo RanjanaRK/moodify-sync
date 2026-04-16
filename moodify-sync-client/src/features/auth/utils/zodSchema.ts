@@ -9,7 +9,7 @@ export const loginSchema = z.object({
 });
 
 export const registerSchema = z.object({
-  fullName: z
+  username: z
     .string()
     .min(1, "Full name is required")
     .min(2, "Full name must be at least 2 characters")
