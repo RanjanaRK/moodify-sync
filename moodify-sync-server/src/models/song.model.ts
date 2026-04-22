@@ -8,8 +8,7 @@ const songSchema = new mongoose.Schema({
   posterUrl: {
     type: String,
     required: false,
-    default:
-      "https://ik.imagekit.io/rk25/default-image.jpg?updatedAt=1776782878478",
+    default: "https://ik.imagekit.io/rk25/default-image.jpg",
   },
   title: {
     type: String,

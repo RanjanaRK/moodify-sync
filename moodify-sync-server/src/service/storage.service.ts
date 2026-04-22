@@ -16,6 +16,7 @@ export const uploadFile = async ({
   const file = await client.files.upload({
     file: buffer.toString("base64"),
     fileName: filename,
+    folder,
   });
 
   return file;
