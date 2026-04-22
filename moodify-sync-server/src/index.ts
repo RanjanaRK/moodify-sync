@@ -5,6 +5,7 @@ import userRouter from "./routes/user.route.js";
 import app from "./server.js";
 import express from "express";
 import cors from "cors";
+import songRouter from "./routes/song.route.js";
 
 dbConnection();
 
@@ -22,6 +23,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+app.use("/api/song", songRouter);
 
 app.listen(5000, () => {
   console.log("server is running okay");

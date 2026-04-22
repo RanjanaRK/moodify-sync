@@ -75,23 +75,11 @@ export const detect = ({
     console.log(getScore("mouthFrownLeft"));
 
     let currentExpression = "Neutral";
-    if (
-      smileLeft > 0.6 &&
-      smileRight > 0.6 &&
-      eyeSquintLeft > 0.3 &&
-      eyeSquintRight > 0.3
-    ) {
-      currentExpression = "love";
-    } else if (smileLeft > 0.5 && smileRight > 0.5) {
+    if (smileLeft > 0.5 && smileRight > 0.5) {
       // 😀 HAPPY
       currentExpression = "happy";
     } else if (jawOpen > 0.2 && browUp > 0.2) {
       currentExpression = "surprised";
-    } else if (
-      (browDownLeft > 0.2 || browDownRight > 0.2) &&
-      (mouthPressLeft > 0.1 || mouthPressRight > 0.1)
-    ) {
-      currentExpression = "angry";
     } else if (frownLeft > 0.0001 && frownRight > 0.0001) {
       currentExpression = "sad";
     }
