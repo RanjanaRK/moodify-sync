@@ -5,10 +5,9 @@ import { getSong } from "../service/song.api";
 export const useSong = (mood: string) => {
   return useQuery<Song>({
     queryKey: ["song", mood],
+    queryFn: () => getSong(mood),
 
-    queryFn: () => getSong({ mood }),
-
-    enabled: !!mood,
+    // enabled: !!mood,
 
     staleTime: 1000 * 60 * 5,
 

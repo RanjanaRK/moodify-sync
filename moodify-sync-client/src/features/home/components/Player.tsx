@@ -1,23 +1,21 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { useSong } from "../hooks/useSong";
 
 type PlayerProps = {
   mood: string | null;
 };
 
 const Player = ({ mood }: PlayerProps) => {
-  const queryClient = useQueryClient();
-
-  const song = queryClient.getQueryData(["song", mood]) as any;
+  const { data: song } = useSong(mood ?? "");
 
   if (!song) return null;
 
   return (
-    <>
+    <div className="mt-10">
       <div>
-        <audio src={song.url} />
+        <audio controls src={song.url} />
         <p>{song.title}</p>
       </div>
-    </>
+    </div>
   );
 };
 

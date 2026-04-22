@@ -2,7 +2,7 @@ import type { AxiosError } from "axios";
 import type { GetSongParams, GetSongResponse, Song } from "../utils/types";
 import { api } from "../../../shared/lib/api";
 
-export const getSong = async ({ mood }: GetSongParams): Promise<Song> => {
+export const getSong = async (mood: GetSongParams): Promise<Song> => {
   try {
     const response = await api.get<GetSongResponse>("/api/song", {
       params: { mood },
