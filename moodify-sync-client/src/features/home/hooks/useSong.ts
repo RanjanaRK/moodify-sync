@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
+
+import { getallSongs, getSong } from "../service/song.api";
 import type { Song } from "../utils/types";
-import { getSong } from "../service/song.api";
 
 export const useSong = (mood: string) => {
   return useQuery<Song>({
@@ -14,5 +15,12 @@ export const useSong = (mood: string) => {
     retry: 2,
 
     refetchOnWindowFocus: false,
+  });
+};
+
+export const useAllSongs = () => {
+  return useQuery<Song[]>({
+    queryKey: ["song", "all"],
+    queryFn: getallSongs,
   });
 };

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { detect, init } from "../utils/utils";
 import type { FaceLandmarker } from "@mediapipe/tasks-vision";
+import { Button } from "../../../components/ui/button";
 
 const FaceExpression = ({
   onClick,
@@ -43,7 +44,9 @@ const FaceExpression = ({
           playsInline
         />
         <h2>{expression}</h2>
-        <button onClick={handleClick}>Detect expression</button>
+        <Button onClick={handleClick} variant={"secondary"}>
+          Detect expression
+        </Button>
       </div>
     </>
   );

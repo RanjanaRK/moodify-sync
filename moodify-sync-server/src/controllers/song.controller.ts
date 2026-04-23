@@ -150,7 +150,7 @@ export const createSong = async (req: Request, res: Response) => {
 //   }
 // };
 
-export const getAllSongs = async (req: Request, res: Response) => {
+export const getSong = async (req: Request, res: Response) => {
   try {
     const { mood } = req.query;
 
@@ -159,6 +159,20 @@ export const getAllSongs = async (req: Request, res: Response) => {
     res.status(200).json({
       message: "song fetched successfully.",
       song,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+};
+
+export const getAllSongs = async (req: Request, res: Response) => {
+  try {
+    const songs = await songModel.find({});
+    res.status(200).json({
+      message: "song fetched successfully.",
+      songs,
     });
   } catch (error) {
     res.status(500).json({

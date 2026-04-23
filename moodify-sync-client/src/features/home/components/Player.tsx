@@ -7,6 +7,8 @@ type PlayerProps = {
 const Player = ({ mood }: PlayerProps) => {
   const { data: song } = useSong(mood ?? "");
 
+  console.log(mood);
+
   if (!song) return null;
 
   return (

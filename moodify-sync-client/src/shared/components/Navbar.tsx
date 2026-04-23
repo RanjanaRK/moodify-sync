@@ -19,6 +19,13 @@ const Navbar = () => {
           {/* Links */}
           <div className="hidden md:flex items-center gap-5 text-sm font-medium text-gray-300">
             <Link
+              to="/songs"
+              className="hover:text-orange-400 hover:underline transition-colors"
+            >
+              All Songs
+            </Link>
+
+            <Link
               to="/profile"
               className="hover:text-orange-400 hover:underline transition-colors"
             >

@@ -1,231 +1,249 @@
-// import React, { useRef, useState, useEffect } from "react";
-// import { useSong } from "../hooks/useSong";
+// // import WavesurferPlayer from "@wavesurfer/react";
+// // import { useState } from "react";
+// // import type WaveSurfer from "wavesurfer.js";
+// // import { Button } from "../../../components/ui/button";
 
-// const SPEED_OPTIONS = [0.5, 0.75, 1, 1.25, 1.5, 2];
+// // const SongPlayer = () => {
+// //   const [wavesurfer, setWavesurfer] = useState<WaveSurfer | null>(null);
+// //   const [isPlaying, setIsPlaying] = useState(false);
 
-// const formatTime = (seconds: number) => {
-//   if (isNaN(seconds)) return "0:00";
-//   const m = Math.floor(seconds / 60);
-//   const s = Math.floor(seconds % 60)
-//     .toString()
-//     .padStart(2, "0");
-//   return `${m}:${s}`;
-// };
+// //   const onReady = (ws: any) => {
+// //     setWavesurfer(ws);
+// //     setIsPlaying(false);
+// //   };
 
-// const Player = () => {
+// //   const onPlayPause = () => {
+// //     wavesurfer && wavesurfer.playPause();
+// //   };
+// //   return (
+// //     <>
+// //       <WavesurferPlayer
+// //         height={100}
+// //         waveColor="violet"
+// //         url="/my-server/audio.wav"
+// //         onReady={onReady}
+// //         onPlay={() => setIsPlaying(true)}
+// //         onPause={() => setIsPlaying(false)}
+// //       />
 
-//   const audioRef = useRef<HTMLAudioElement | null>(null);
-//   const progressRef = useRef<HTMLDivElement | null>(null);
+// //       <Button onClick={onPlayPause}>{isPlaying ? "Pause" : "Play"}</Button>
+// //     </>
+// //   );
+// // };
 
-//   const [isPlaying, setIsPlaying] = useState(false);
-//   const [currentTime, setCurrentTime] = useState(0);
-//   const [duration, setDuration] = useState(0);
-//   const [speed, setSpeed] = useState(1);
-//   const [volume, setVolume] = useState(1);
-//   const [showSpeed, setShowSpeed] = useState(false);
-//   const [isMuted, setIsMuted] = useState(false);
+// // export default SongPlayer;
 
-//   useEffect(() => {
-//     if (audioRef.current) {
-//       audioRef.current.load();
-//       setIsPlaying(false);
-//       setCurrentTime(0);
-//     }
-//   }, [song?.url]);
+import { useEffect, useRef, useState } from "react";
+import { useSong } from "../hooks/useSong";
 
-//   const togglePlay = () => {
-//     const audio = audioRef.current;
-//     if (!audio) return;
+type PlayerProps = {
+  mood: string | null;
+};
 
-//     if (isPlaying) audio.pause();
-//     else audio.play();
+const MusicBackground = ({ mood }: PlayerProps) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const { data: song } = useSong(mood ?? "");
 
-//     setIsPlaying(!isPlaying);
-//   };
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-//   const skip = (secs: number) => {
-//     const audio = audioRef.current;
-//     if (!audio) return;
+  useEffect(() => {
+    if (!song) return;
 
-//     audio.currentTime = Math.min(
-//       Math.max(audio.currentTime + secs, 0),
-//       duration,
-//     );
-//   };
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.load();
+      setIsPlaying(false);
+    }
+  }, [song]);
 
-//   const handleTimeUpdate = () => {
-//     if (!audioRef.current) return;
-//     setCurrentTime(audioRef.current.currentTime);
-//   };
+  const togglePlay = async () => {
+    if (!audioRef.current) return;
 
-//   const handleLoadedMetadata = () => {
-//     if (!audioRef.current) return;
-//     setDuration(audioRef.current.duration);
-//   };
+    if (isPlaying) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+    } else {
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+      } catch (err) {
+        console.log("Play blocked or failed:", err);
+      }
+    }
+  };
 
-//   const handleProgressClick = (e: React.MouseEvent) => {
-//     const bar = progressRef.current;
-//     if (!bar || !audioRef.current) return;
+  console.log(mood);
 
-//     const rect = bar.getBoundingClientRect();
-//     const ratio = (e.clientX - rect.left) / rect.width;
-//     const newTime = ratio * duration;
+  if (!song) return null;
 
-//     audioRef.current.currentTime = newTime;
-//     setCurrentTime(newTime);
-//   };
+  return (
+    <>
+      {/* 🌈 Animated Gradient Background */}
 
-//   const handleSpeedChange = (s: number) => {
-//     setSpeed(s);
-//     if (audioRef.current) {
-//       audioRef.current.playbackRate = s;
-//     }
-//     setShowSpeed(false);
-//   };
+      {/* ✨ Floating blobs */}
 
-//   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     const val = parseFloat(e.target.value);
-//     setVolume(val);
+      {/* 🎧 Main Glass Card */}
+      <div className="relative z-10 w-[360px] p-6 rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl">
+        {/* Album Art */}
 
-//     if (audioRef.current) {
-//       audioRef.current.volume = val;
-//     }
+        <img
+          src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4"
+          className="w-full h-48 rounded-2xl  shadow-lg"
+        />
 
-//     setIsMuted(val === 0);
-//   };
+        {/* Song Info */}
+        <div className="mt-5 text-center">
+          <h2 className="text-xl font-semibold">{song.mood}</h2>
+          <p className="text-sm text-gray-300">
+            Generated based on your expression
+          </p>
+        </div>
 
-//   const toggleMute = () => {
-//     if (!audioRef.current) return;
+        {/* Waveform Placeholder */}
+        <div className="mt-6 h-12 flex items-end justify-center gap-1">
+          {Array.from({ length: 25 }).map((_, i) => (
+            <div
+              key={i}
+              className={`w-1 rounded-full bg-white/70 ${
+                isPlaying ? "animate-pulse" : ""
+              }`}
+              style={{
+                height: `${Math.random() * 40 + 10}px`,
+                animationDelay: `${i * 0.05}s`,
+              }}
+            />
+          ))}
+        </div>
 
-//     if (isMuted) {
-//       audioRef.current.volume = volume || 0.5;
-//       setIsMuted(false);
-//     } else {
-//       audioRef.current.volume = 0;
-//       setIsMuted(true);
-//     }
-//   };
+        {/* Controls */}
+        <div className="mt-6 flex items-center justify-center gap-4">
+          {/* <button className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+            ⏮
+          </button> */}
+          {/* <audio controls src={song.url} /> */}
+          {/* <button
+            onClick={() => setIsPlaying(!isPlaying)}
+            className="px-6 py-3 rounded-full bg-white text-black font-semibold shadow-lg hover:scale-105 transition"
+          >
+            {isPlaying ? "Pause" : "Play"}
+          </button> */}
 
-//   const handleSongEnd = () => {
-//     setIsPlaying(false);
-//     setCurrentTime(0);
-//   };
+          {/* <button className="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 transition">
+            ⏭
+          </button> */}
 
-//   const progress = duration ? (currentTime / duration) * 100 : 0;
+          <div className="px-6 pb-6">
+            {/* Song Info */}
 
-//   if (!song) return null;
+            {/* Controls */}
+            <div className="flex items-center gap-3">
+              {/* <button className="px-2">⏮</button>
+                <button
+                  onClick={togglePlay}
+                  className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white"
+                >
+                  {isPlaying ? "⏸" : "▶"}
+                </button>
+                <button className="px-2">⏭</button> */}
+              <audio controls src={song.url} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default MusicBackground;
+
+// import { useState } from "react";
+
+// const MusicUI = () => {
+//   const [playing, setPlaying] = useState(true);
 
 //   return (
-//     <div className="fixed bottom-0 w-full bg-zinc-900 text-white border-t border-zinc-700 p-4 shadow-lg">
-//       <audio
-//         ref={audioRef}
-//         src={song.url}
-//         onTimeUpdate={handleTimeUpdate}
-//         onLoadedMetadata={handleLoadedMetadata}
-//         onEnded={handleSongEnd}
-//       />
+//     <div className="min-h-screen bg-[#0b0b0f] text-white flex flex-col">
+//       {/* 🔥 Top Bar */}
+//       <div className="flex items-center justify-between px-6 py-4">
+//         <h1 className="text-2xl font-bold text-red-500">Moodify</h1>
 
-//       {/* Top Info */}
-//       <div className="flex items-center gap-3 mb-4">
-//         <img
-//           src={song.posterUrl}
-//           alt={song.title}
-//           className="w-14 h-14 rounded-lg object-cover shadow-md"
-//         />
-//         <div>
-//           <p className="font-semibold">{song.title}</p>
-//           <span className="text-sm text-orange-400">{song.mood}</span>
-//         </div>
-//       </div>
-
-//       {/* Progress */}
-//       <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
-//         <span>{formatTime(currentTime)}</span>
-
-//         <div
-//           ref={progressRef}
-//           onClick={handleProgressClick}
-//           className="flex-1 h-2 bg-zinc-700 rounded cursor-pointer relative"
-//         >
-//           <div
-//             className="h-2 bg-orange-500 rounded"
-//             style={{ width: `${progress}%` }}
-//           />
-//           <div
-//             className="absolute top-1/2 -translate-y-1/2 w-3 h-3 bg-orange-500 rounded-full"
-//             style={{ left: `${progress}%` }}
-//           />
-//         </div>
-
-//         <span>{formatTime(duration)}</span>
-//       </div>
-
-//       {/* Controls */}
-//       <div className="flex items-center justify-between">
-//         {/* Left */}
-//         <div className="flex items-center gap-3">
-//           <button onClick={() => skip(-5)} className="hover:text-orange-400">
-//             ⏪
-//           </button>
-
-//           <button
-//             onClick={togglePlay}
-//             className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-full font-semibold"
-//           >
-//             {isPlaying ? "Pause" : "Play"}
-//           </button>
-
-//           <button onClick={() => skip(5)} className="hover:text-orange-400">
-//             ⏩
-//           </button>
-//         </div>
-
-//         {/* Right */}
-//         <div className="flex items-center gap-3">
-//           {/* Speed */}
-//           <div className="relative">
-//             <button
-//               onClick={() => setShowSpeed(!showSpeed)}
-//               className="bg-zinc-800 px-2 py-1 rounded text-sm"
-//             >
-//               {speed}x
-//             </button>
-
-//             {showSpeed && (
-//               <div className="absolute bottom-8 bg-zinc-800 rounded shadow p-1">
-//                 {SPEED_OPTIONS.map((s) => (
-//                   <button
-//                     key={s}
-//                     onClick={() => handleSpeedChange(s)}
-//                     className={`block px-3 py-1 text-sm w-full text-left hover:bg-zinc-700 ${
-//                       s === speed ? "text-orange-400" : ""
-//                     }`}
-//                   >
-//                     {s}x
-//                   </button>
-//                 ))}
-//               </div>
-//             )}
+//         <div className="flex items-center gap-4">
+//           <button className="w-10 h-10 rounded-full bg-red-500/20">⬆</button>
+//           <div className="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center">
+//             S
 //           </div>
+//         </div>
+//       </div>
 
-//           {/* Volume */}
-//           <div className="flex items-center gap-2">
-//             <button onClick={toggleMute}>{isMuted ? "🔇" : "🔊"}</button>
+//       {/* 🎵 Main Player Area */}
+//       <div className="flex-1 flex items-center justify-center px-6">
+//         {/* Album / Visualizer */}
+//         <div className="w-[420px] h-[320px] rounded-2xl bg-black/60 border border-white/10 shadow-2xl flex items-center justify-center relative overflow-hidden">
+//           {/* fake noise background */}
+//           <div className="absolute inset-0 bg-gradient-to-br from-red-900/30 via-black to-black" />
 
-//             <input
-//               type="range"
-//               min="0"
-//               max="1"
-//               step="0.05"
-//               value={isMuted ? 0 : volume}
-//               onChange={handleVolume}
-//               className="w-20 accent-orange-500"
+//           {/* waveform bars */}
+//           <div className="flex items-end gap-1 z-10">
+//             {Array.from({ length: 40 }).map((_, i) => (
+//               <div
+//                 key={i}
+//                 className="w-1 bg-red-500 rounded-full animate-pulse"
+//                 style={{
+//                   height: `${Math.random() * 80 + 20}px`,
+//                   animationDelay: `${i * 0.03}s`,
+//                 }}
+//               />
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       {/* 🎧 Bottom Player */}
+//       <div className="px-6 pb-6">
+//         <div className="bg-[#111] border border-white/10 rounded-2xl p-4 flex items-center justify-between shadow-lg">
+//           {/* Song Info */}
+//           <div className="flex items-center gap-3">
+//             <img
+//               src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4"
+//               className="w-12 h-12 rounded-md object-cover"
 //             />
+//             <div>
+//               <h3 className="font-semibold">Marco Teaser Theme</h3>
+//               <p className="text-xs text-red-400">Angry Mood</p>
+//             </div>
+//           </div>
+
+//           {/* Controls */}
+//           <div className="flex items-center gap-3">
+//             <button className="px-2">⏮</button>
+//             <button
+//               onClick={() => setPlaying(!playing)}
+//               className="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center text-white"
+//             >
+//               {playing ? "⏸" : "▶"}
+//             </button>
+//             <button className="px-2">⏭</button>
+//           </div>
+
+//           {/* Progress */}
+//           <div className="hidden md:flex items-center gap-2 w-[200px]">
+//             <span className="text-xs">0:14</span>
+//             <div className="flex-1 h-1 bg-gray-700 rounded">
+//               <div className="w-1/3 h-full bg-red-500 rounded" />
+//             </div>
+//             <span className="text-xs">1:12</span>
 //           </div>
 //         </div>
+//       </div>
+
+//       {/* 🔴 Detect Mood Button */}
+//       <div className="flex justify-center pb-6">
+//         <button className="bg-red-600 hover:bg-red-700 transition px-6 py-2 rounded-full font-semibold shadow-lg">
+//           Detect Mood
+//         </button>
 //       </div>
 //     </div>
 //   );
 // };
 
-// export default Player;
+// export default MusicUI;

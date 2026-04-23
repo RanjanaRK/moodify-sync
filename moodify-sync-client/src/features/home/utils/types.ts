@@ -10,6 +10,12 @@ export interface GetSongParams {
   mood: string;
 }
 
+export interface GetSongsResponse {
+  message: string;
+  songs: Song[];
+}
+
 export interface GetSongResponse {
+  message: string;
   song: Song;
 }
