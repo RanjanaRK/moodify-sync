@@ -7,7 +7,7 @@ import AuthLayout from '../layouts/AuthLayout';
 import RootLayout from '../layouts/RootLayout';
 import { Loader } from 'lucide-react';
 
-// lazy loadding
+// lazy loading
 
 const Login = lazy(() => import('../features/auth/pages/Login'));
 const Register = lazy(() => import('../features/auth/pages/Register'));
