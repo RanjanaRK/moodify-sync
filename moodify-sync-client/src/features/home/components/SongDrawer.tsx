@@ -1,4 +1,4 @@
-import type { Song } from "../utils/types";
+import type { Song } from '../utils/types';
 
 type Props = {
   songs: Song[];
@@ -8,33 +8,27 @@ type Props = {
   setOpen: (val: boolean) => void;
 };
 
-const SongDrawer = ({
-  songs,
-  onSelect,
-  currentSongId,
-  open,
-  setOpen,
-}: Props) => {
+const SongDrawer = ({ songs, onSelect, currentSongId, open, setOpen }: Props) => {
   return (
     <>
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed inset-0 not-only: bg-black/50 backdrop-blur-sm z-40"
+          className="not-only: fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
         />
       )}
 
       <div
-        className={`fixed top-0 right-0 h-full w-90 bg-[#0b0b0f] text-white z-50 shadow-2xl transform transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed top-0 right-0 z-50 h-full w-90 transform bg-[#0b0b0f] text-white shadow-2xl transition-transform duration-300 ${
+          open ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
-        <div className="p-4 border-b border-white/10 flex justify-between items-center">
+        <div className="flex items-center justify-between border-b border-white/10 p-4">
           <h2 className="text-lg font-semibold">Your Songs</h2>
           <button onClick={() => setOpen(false)}>✖</button>
         </div>
 
-        <div className="p-3 space-y-3 overflow-y-auto h-full pb-24">
+        <div className="h-full space-y-3 overflow-y-auto p-3 pb-24">
           {songs.map((song) => {
             const active = song.id === currentSongId;
 
@@ -42,24 +36,18 @@ const SongDrawer = ({
               <div
                 key={song.id}
                 onClick={() => onSelect(song)}
-                className={`flex items-center gap-3 p-3 rounded-xl cursor-pointer transition
-                ${
-                  active
-                    ? "bg-red-600/20 border border-red-500"
-                    : "hover:bg-white/5"
+                className={`flex cursor-pointer items-center gap-3 rounded-xl p-3 transition ${
+                  active ? 'border border-red-500 bg-red-600/20' : 'hover:bg-white/5'
                 }`}
               >
-                <img
-                  src={song.posterUrl}
-                  className="w-12 h-12 rounded-lg object-cover"
-                />
+                <img src={song.posterUrl} className="h-12 w-12 rounded-lg object-cover" />
 
                 <div className="flex-1">
                   <h3 className="text-sm font-medium">{song.title}</h3>
                   <p className="text-xs text-gray-400">{song.mood}</p>
                 </div>
 
-                <div className="text-sm">{active ? "play" : "pause"}</div>
+                <div className="text-sm">{active ? 'play' : 'pause'}</div>
               </div>
             );
           })}

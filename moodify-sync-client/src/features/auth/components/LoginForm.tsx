@@ -1,3 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router";
 import { Button } from "../../../components/ui/button";
 import {
   Card,
@@ -8,13 +12,9 @@ import {
 } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema } from "../utils/zodSchema";
-import type { LoginFormType } from "../utils/types";
-import { Link, Navigate, useNavigate } from "react-router";
 import { useLogin } from "../hooks/useAuth";
-import { Loader2 } from "lucide-react";
+import type { LoginFormType } from "../utils/types";
+import { loginSchema } from "../utils/zodSchema";
 
 const LoginForm = () => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
-import { Link } from "react-router";
-import { useCurrentUser } from "../../features/auth/hooks/useUser";
-import LogoutButton from "./LogoutButton";
-import { Upload } from "lucide-react";
+import { Upload } from 'lucide-react';
+import { Link } from 'react-router';
+import { useCurrentUser } from '../../features/auth/hooks/useUser';
+import LogoutButton from './LogoutButton';
 
 const Navbar = ({ onOpenSongs }: { onOpenSongs: () => void }) => {
   const { currentUserQuery } = useCurrentUser();
@@ -10,25 +10,20 @@ const Navbar = ({ onOpenSongs }: { onOpenSongs: () => void }) => {
 
   return (
     <>
-      <nav className="w-full absolute top-0 left-0 z-50 bg-black/40 backdrop-blur-md border-b border-orange-500/10">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
-          <Link to={"/"}>
-            <h1 className="text-2xl font-bold tracking-wide text-white">
-              Moodify Sync
-            </h1>
+      <nav className="absolute top-0 left-0 z-50 w-full border-b border-orange-500/10 bg-black/40 backdrop-blur-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+          <Link to={'/'}>
+            <h1 className="text-2xl font-bold tracking-wide text-white">Moodify Sync</h1>
           </Link>
 
-          <div className="hidden md:flex items-center gap-5 text-sm font-medium text-gray-300">
-            <button
-              onClick={onOpenSongs}
-              className="hover:text-orange-400 transition"
-            >
+          <div className="hidden items-center gap-5 text-sm font-medium text-gray-300 md:flex">
+            <button onClick={onOpenSongs} className="transition hover:text-orange-400">
               All Songs
             </button>
-            <Link to={"/upload"}>
+            <Link to={'/upload'}>
               <Upload />
             </Link>
-            <h3 className=" font-semibold">{user?.username}</h3>
+            <h3 className="font-semibold">{user?.username}</h3>
 
             <LogoutButton />
           </div>

@@ -1,4 +1,4 @@
-import UploadSong from "../components/UploadSong";
+import UploadSong from '../components/UploadSong';
 
 const Uploadsongs = () => {
   return (

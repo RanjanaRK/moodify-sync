@@ -1,11 +1,12 @@
-import { createBrowserRouter } from "react-router";
-import Login from "../features/auth/pages/Login";
-import Register from "../features/auth/pages/Register";
-import Home from "../features/home/pages/Home";
-import Uploadsongs from "../features/upload/pages/Uploadsongs";
-import AppLayout from "../layouts/AppLayout";
-import AuthLayout from "../layouts/AuthLayout";
-import RootLayout from "../layouts/RootLayout";
+import { createBrowserRouter } from 'react-router';
+import Login from '../features/auth/pages/Login';
+import Register from '../features/auth/pages/Register';
+import Home from '../features/home/pages/Home';
+import Uploadsongs from '../features/upload/pages/Uploadsongs';
+import AppLayout from '../layouts/AppLayout';
+import AuthLayout from '../layouts/AuthLayout';
+import RootLayout from '../layouts/RootLayout';
+import Protected from '../features/auth/components/Protected';
 
 export const router = createBrowserRouter([
   {
@@ -15,11 +16,11 @@ export const router = createBrowserRouter([
         element: <AuthLayout />,
         children: [
           {
-            path: "/auth/login",
+            path: '/auth/login',
             element: <Login />,
           },
           {
-            path: "/auth/register",
+            path: '/auth/register',
             element: <Register />,
           },
         ],
@@ -28,12 +29,20 @@ export const router = createBrowserRouter([
         element: <AppLayout />,
         children: [
           {
-            path: "/",
-            element: <Home />,
+            path: '/',
+            element: (
+              <Protected>
+                <Home />
+              </Protected>
+            ),
           },
           {
-            path: "/upload",
-            element: <Uploadsongs />,
+            path: '/upload',
+            element: (
+              <Protected>
+                <Uploadsongs />
+              </Protected>
+            ),
           },
         ],
       },

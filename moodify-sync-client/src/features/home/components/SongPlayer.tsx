@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useSong } from "../hooks/useSong";
-import type { Song } from "../utils/types";
+import { useEffect } from 'react';
+import { useSong } from '../hooks/useSong';
+import type { Song } from '../utils/types';
 
 type Props = {
   mood: string | null;
@@ -8,7 +8,7 @@ type Props = {
 };
 
 const MusicBackground = ({ mood, onAutoPlay }: Props) => {
-  const { data: song } = useSong(mood ?? "");
+  const { data: song } = useSong(mood ?? '');
 
   useEffect(() => {
     if (!song) return;
@@ -19,7 +19,7 @@ const MusicBackground = ({ mood, onAutoPlay }: Props) => {
   if (!song) return null;
 
   return (
-    <div className="text-center text-white text-3xl">
+    <div className="text-center text-3xl text-white">
       <h2>{song.mood} mood </h2>
     </div>
   );
