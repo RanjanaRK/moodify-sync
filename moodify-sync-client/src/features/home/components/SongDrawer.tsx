@@ -1,30 +1,26 @@
-import { useState } from "react";
 import type { Song } from "../utils/types";
 
 type Props = {
   songs: Song[];
   onSelect: (song: Song) => void;
   currentSongId?: string;
+  open: boolean;
+  setOpen: (val: boolean) => void;
 };
 
-const SongDrawer = ({ songs, onSelect, currentSongId }: Props) => {
-  const [open, setOpen] = useState(false);
-
+const SongDrawer = ({
+  songs,
+  onSelect,
+  currentSongId,
+  open,
+  setOpen,
+}: Props) => {
   return (
     <>
-      <div className="pt-24 border-4 mt-24">
-        <button
-          onClick={() => setOpen(!open)}
-          className=" top-6 right-6  px-4 py-2 bg-white text-black rounded-full shadow-lg"
-        >
-          Songs
-        </button>
-      </div>
-
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+          className="fixed inset-0 not-only: bg-black/50 backdrop-blur-sm z-40"
         />
       )}
 

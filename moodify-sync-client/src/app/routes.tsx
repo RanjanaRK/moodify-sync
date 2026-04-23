@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router";
 import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
 import Home from "../features/home/pages/Home";
-import AllSongs from "../features/home/pages/AllSongs";
 import Profile from "../features/profile/pages/Profile";
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
@@ -32,10 +31,7 @@ export const router = createBrowserRouter([
             path: "/",
             element: <Home />,
           },
-          {
-            path: "/songs",
-            element: <AllSongs />,
-          },
+
           {
             path: "/profile",
             element: <Profile />,

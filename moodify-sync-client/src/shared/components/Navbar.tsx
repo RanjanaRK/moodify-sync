@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useCurrentUser } from "../../features/auth/hooks/useUser";
 import LogoutButton from "./LogoutButton";
 
-const Navbar = () => {
+const Navbar = ({ onOpenSongs }: { onOpenSongs: () => void }) => {
   const { currentUserQuery } = useCurrentUser();
   const user = currentUserQuery.data?.user;
   console.log(user);
@@ -18,12 +18,12 @@ const Navbar = () => {
 
           {/* Links */}
           <div className="hidden md:flex items-center gap-5 text-sm font-medium text-gray-300">
-            <Link
-              to="/songs"
-              className="hover:text-orange-400 hover:underline transition-colors"
+            <button
+              onClick={onOpenSongs}
+              className="hover:text-orange-400 transition"
             >
               All Songs
-            </Link>
+            </button>
 
             <Link
               to="/profile"
