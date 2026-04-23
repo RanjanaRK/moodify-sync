@@ -33,11 +33,12 @@
 
 // // export default SongPlayer;
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { useSong } from "../hooks/useSong";
 
 type PlayerProps = {
   mood: string | null;
+  audioRef?: RefObject<HTMLAudioElement | null>;
 };
 
 const MusicBackground = ({ mood }: PlayerProps) => {
@@ -145,7 +146,7 @@ const MusicBackground = ({ mood }: PlayerProps) => {
                   {isPlaying ? "⏸" : "▶"}
                 </button>
                 <button className="px-2">⏭</button> */}
-              <audio controls src={song.url} />
+              <audio controls src={song.url} ref={audioRef} />
             </div>
           </div>
         </div>
