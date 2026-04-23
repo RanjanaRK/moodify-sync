@@ -3,7 +3,7 @@ import {
   registerController,
   loginController,
   logoutContoller,
-} from "../controllers/auth.contoller.js";
+} from "../controllers/auth.controller.js";
 import authUser from "../middleware/auth.middleware.js";
 import {
   registerValidator,
