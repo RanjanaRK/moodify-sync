@@ -1,12 +1,18 @@
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router';
-import Login from '../features/auth/pages/Login';
-import Register from '../features/auth/pages/Register';
-import Home from '../features/home/pages/Home';
-import Uploadsongs from '../features/upload/pages/Uploadsongs';
+
+import Protected from '../features/auth/components/Protected';
 import AppLayout from '../layouts/AppLayout';
 import AuthLayout from '../layouts/AuthLayout';
 import RootLayout from '../layouts/RootLayout';
-import Protected from '../features/auth/components/Protected';
+import { Loader } from 'lucide-react';
+
+// lazy loadding
+
+const Login = lazy(() => import('../features/auth/pages/Login'));
+const Register = lazy(() => import('../features/auth/pages/Register'));
+const Home = lazy(() => import('../features/home/pages/Home'));
+const Uploadsongs = lazy(() => import('../features/upload/pages/Uploadsongs'));
 
 export const router = createBrowserRouter([
   {
@@ -17,11 +23,19 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/auth/login',
-            element: <Login />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Login />
+              </Suspense>
+            ),
           },
           {
             path: '/auth/register',
-            element: <Register />,
+            element: (
+              <Suspense fallback={<Loader />}>
+                <Register />
+              </Suspense>
+            ),
           },
         ],
       },
@@ -31,17 +45,21 @@ export const router = createBrowserRouter([
           {
             path: '/',
             element: (
-              <Protected>
-                <Home />
-              </Protected>
+              <Suspense fallback={<Loader />}>
+                <Protected>
+                  <Home />
+                </Protected>
+              </Suspense>
             ),
           },
           {
             path: '/upload',
             element: (
-              <Protected>
-                <Uploadsongs />
-              </Protected>
+              <Suspense fallback={<Loader />}>
+                <Protected>
+                  <Uploadsongs />
+                </Protected>
+              </Suspense>
             ),
           },
         ],
