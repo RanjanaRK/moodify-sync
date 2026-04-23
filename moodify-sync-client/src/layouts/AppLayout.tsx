@@ -8,7 +8,7 @@ import Navbar from '../shared/components/Navbar';
 const AppLayout = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { data: songs = [] } = useAllSongs();
 

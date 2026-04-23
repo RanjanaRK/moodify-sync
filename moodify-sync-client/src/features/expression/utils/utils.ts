@@ -1,4 +1,4 @@
-import { FaceLandmarker, FilesetResolver } from "@mediapipe/tasks-vision";
+import { FaceLandmarker, FilesetResolver } from '@mediapipe/tasks-vision';
 
 type InitProps = {
   landmarkerRef: React.MutableRefObject<FaceLandmarker | null>;
@@ -6,22 +6,18 @@ type InitProps = {
   streamRef: React.MutableRefObject<MediaStream | null>;
 };
 
-export const init = async ({
-  landmarkerRef,
-  videoRef,
-  streamRef,
-}: InitProps) => {
+export const init = async ({ landmarkerRef, videoRef, streamRef }: InitProps) => {
   const vision = await FilesetResolver.forVisionTasks(
-    "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm",
+    'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@latest/wasm'
   );
 
   landmarkerRef.current = await FaceLandmarker.createFromOptions(vision, {
     baseOptions: {
       modelAssetPath:
-        "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task",
+        'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task',
     },
     outputFaceBlendshapes: true,
-    runningMode: "VIDEO",
+    runningMode: 'VIDEO',
     numFaces: 1,
   });
 
@@ -41,16 +37,12 @@ type DetectProps = {
   setExpression: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const detect = ({
-  landmarkerRef,
-  videoRef,
-  setExpression,
-}: DetectProps) => {
+export const detect = ({ landmarkerRef, videoRef, setExpression }: DetectProps) => {
   if (!landmarkerRef.current || !videoRef.current) return;
 
   const results = landmarkerRef.current.detectForVideo(
     videoRef.current,
-    performance.now(),
+    performance.now()
   );
 
   if (results.faceBlendshapes?.length > 0) {
@@ -59,29 +51,21 @@ export const detect = ({
     const getScore = (name: string): number =>
       blendshapes.find((b) => b.categoryName === name)?.score || 0;
 
-    const smileLeft = getScore("mouthSmileLeft");
-    const smileRight = getScore("mouthSmileRight");
-    const jawOpen = getScore("jawOpen");
-    const browUp = getScore("browInnerUp");
-    const frownLeft = getScore("mouthFrownLeft");
-    const frownRight = getScore("mouthFrownRight");
-    const eyeSquintLeft = getScore("eyeSquintLeft");
-    const eyeSquintRight = getScore("eyeSquintRight");
-    const browDownLeft = getScore("browDownLeft");
-    const browDownRight = getScore("browDownRight");
-    const mouthPressLeft = getScore("mouthPressLeft");
-    const mouthPressRight = getScore("mouthPressRight");
+    const smileLeft = getScore('mouthSmileLeft');
+    const smileRight = getScore('mouthSmileRight');
+    const jawOpen = getScore('jawOpen');
+    const browUp = getScore('browInnerUp');
+    const frownLeft = getScore('mouthFrownLeft');
+    const frownRight = getScore('mouthFrownRight');
 
-    console.log(getScore("mouthFrownLeft"));
-
-    let currentExpression = "Neutral";
+    let currentExpression = 'Neutral';
     if (smileLeft > 0.5 && smileRight > 0.5) {
       // 😀 HAPPY
-      currentExpression = "happy";
+      currentExpression = 'happy';
     } else if (jawOpen > 0.2 && browUp > 0.2) {
-      currentExpression = "surprised";
+      currentExpression = 'surprised';
     } else if (frownLeft > 0.0001 && frownRight > 0.0001) {
-      currentExpression = "sad";
+      currentExpression = 'sad';
     }
 
     setExpression(currentExpression);
