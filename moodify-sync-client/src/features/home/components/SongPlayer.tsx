@@ -1,4 +1,4 @@
-import { useEffect, type RefObject } from "react";
+import { useEffect } from "react";
 import { useSong } from "../hooks/useSong";
 import type { Song } from "../utils/types";
 

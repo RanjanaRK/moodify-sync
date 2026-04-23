@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router";
 import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
 import Home from "../features/home/pages/Home";
-import Profile from "../features/profile/pages/Profile";
+import Uploadsongs from "../features/upload/pages/Uploadsongs";
 import AppLayout from "../layouts/AppLayout";
 import AuthLayout from "../layouts/AuthLayout";
 import RootLayout from "../layouts/RootLayout";
@@ -31,10 +31,9 @@ export const router = createBrowserRouter([
             path: "/",
             element: <Home />,
           },
-
           {
-            path: "/profile",
-            element: <Profile />,
+            path: "/upload",
+            element: <Uploadsongs />,
           },
         ],
       },

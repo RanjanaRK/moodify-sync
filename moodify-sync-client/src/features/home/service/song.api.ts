@@ -32,5 +32,3 @@ export const getallSongs = async (): Promise<Song[]> => {
     throw new Error(err.response?.data?.message || "Failed to fetch song");
   }
 };
-
-export const uploadSongs = async () => {};
