@@ -1,11 +1,11 @@
 import cookieParser from "cookie-parser";
+import cors from "cors";
+import express from "express";
 import dbConnection from "./config/db.js";
 import authRouter from "./routes/auth.route.js";
+import songRouter from "./routes/song.route.js";
 import userRouter from "./routes/user.route.js";
 import app from "./server.js";
-import express from "express";
-import cors from "cors";
-import songRouter from "./routes/song.route.js";
 
 dbConnection();
 
