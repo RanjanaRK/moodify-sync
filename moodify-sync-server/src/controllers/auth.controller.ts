@@ -29,6 +29,7 @@ export const registerController = async (req: Request, res: Response) => {
     });
 
     res.cookie("token", token, {
+      path: "/",
       httpOnly: true,
       secure: true,
       sameSite: "none",
@@ -79,6 +80,7 @@ export const loginController = async (req: Request, res: Response) => {
     });
 
     res.cookie("token", token, {
+      path: "/",
       httpOnly: true,
       secure: true,
       sameSite: "none",
