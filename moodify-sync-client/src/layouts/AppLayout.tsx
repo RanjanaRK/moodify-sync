@@ -1,5 +1,5 @@
-import { useRef, useState } from 'react';
-import { Outlet } from 'react-router';
+import { useEffect, useRef, useState } from 'react';
+import { Outlet, useLocation } from 'react-router';
 import SongDrawer from '../features/home/components/SongDrawer';
 import { useAllSongs } from '../features/home/hooks/useSong';
 import type { Song } from '../features/home/utils/types';
@@ -11,6 +11,8 @@ const AppLayout = () => {
   const [, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { data: songs = [] } = useAllSongs();
+
+  const location = useLocation();
 
   const hidePlayer = location.pathname.startsWith('/upload');
 
@@ -24,6 +26,14 @@ const AppLayout = () => {
       setIsPlaying(true);
     }
   };
+
+  useEffect(() => {
+    if (hidePlayer && audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      setCurrentSong(null);
+    }
+  }, [hidePlayer]);
 
   return (
     <>
