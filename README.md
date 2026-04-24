@@ -6,8 +6,8 @@ Full-stack app with:
 
 ## 📁 Project Structure
 
-/moodify-sync-frontend → deployed on Vercel  
-/moodify-sync-backend → deployed on Render  
+/moodify-sync-client → deployed on Vercel  
+/moodify-sync-server → deployed on Render  
 
 ## 🚀 Live Links
 
@@ -19,11 +19,11 @@ Full-stack app with:
 git clone ...
 
 ### Frontend
-cd frontend
+cd moodify-sync-client
 npm install
 npm run dev
 
 ### Backend
-cd backend
+cd moodify-sync-server
 npm install
 npm run dev
