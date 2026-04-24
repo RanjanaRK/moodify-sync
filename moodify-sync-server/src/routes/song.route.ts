@@ -5,13 +5,14 @@ import {
   getAllSongs,
   getSong,
 } from "../controllers/song.controller.js";
+import authUser from "../middleware/auth.middleware.js";
 
 const songRouter = Router();
 
-songRouter.post("/", upload.single("song"), createSong);
+songRouter.post("/", upload.single("song"), authUser, createSong);
 
-songRouter.get("/", getSong);
+songRouter.get("/", authUser, getSong);
 
-songRouter.get("/all", getAllSongs);
+songRouter.get("/all", authUser, getAllSongs);
 
 export default songRouter;
